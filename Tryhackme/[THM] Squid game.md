@@ -43,6 +43,7 @@ Dựa vào đoạn script powershell trả lời được luôn đoạn thứ 2
 ```
 In what folder is it dropping the malicious executable? (hint: %Folder%)
 ```
+
 Tới câu hỏi số 3, khi nhìn đoạn code nó sẽ thực hiện một đoạn là `$path = [System.Environment]::GetFolderPath("CommonApplicationData") + "\\QdZGP.exe";` nếu tra theo đoạn link (này)[https://gist.github.com/DamianSuess/c143ed869e02e002d252056656aeb9bf]
 ta sẽ biế được rwawnfg phần `CommonApplicationData` đó chính là `ProgramData`
 

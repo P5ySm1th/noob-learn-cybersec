@@ -337,7 +337,7 @@ Check kĩ lại đoạn `olevba` thì thấy được rằng `binary` được d
 Attacker 4
 ===
 Mình khá là ngu khi phải phân tích khá nhiều bước. Nhưng rồi mình chợt nhận ra là mình ngu thật =)))
-Bước đầu phân tích bằng `olevba` thì ra được source code khá là dài. Có thể xem [tại đây]()
+Bước đầu phân tích bằng `olevba` thì ra được source code khá là dài. Có thể xem [tại đây](https://github.com/P5ySm1th/noob-learn-cybersec/blob/main/Tryhackme/Others/%5Bsquidgame_attacker4%5D%20attaclker4_raw.vbs)
 
 Nhìn sơ qua thì khá là dài và khá là rối do chưa được `indent` lại đúng cách. Để `indent` lại cho dễ nhìn thì có thể vòa trang web [này](https://www.vbindent.com/?indent) để có thể `indent` lại cho nhìn rõ hơn.
 
@@ -404,7 +404,7 @@ def XORI(string1, string2):
 Nếu muốn đọc hiểu hơn về `visual basic` thì có thể xem thêm tại đường link này: 
 - https://learn.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/comparison-operators
 
-Sau khi filter và bỏ những function dư thừa thì ta đã có một đoạn code cuối cùng [tại đây]()
+Sau khi filter và bỏ những function dư thừa thì ta đã có một đoạn code cuối cùng [tại đây](https://github.com/P5ySm1th/noob-learn-cybersec/blob/main/Tryhackme/Others/%5Bsquidgame_attacker4%5D%20attacker4_clean.vbs)
 
 Và trả lời các câu hỏi thôi =)) (dựa vào đoạn code mà trả lời đi, tới đây là xong hết rồi :)))) ) (2h sáng hơn và đã quá lười để viết tiếp :) )
 
@@ -435,7 +435,7 @@ Attacker 5
 ```
 What is the caption you found in the maldoc?
 ```
-Check bằng `olevba` trước (có thể xem [tại đây]()) nhưng vẫn không thấy gì, nên bắt đầu sử dụng `oledump`, check từng stream một sẽ có đáp án
+Check bằng `olevba` trước (có thể xem [tại đây](https://github.com/P5ySm1th/noob-learn-cybersec/blob/main/Tryhackme/Others/%5Bsquidgame_attacker5%5D%20attacker5.vbs)) nhưng vẫn không thấy gì, nên bắt đầu sử dụng `oledump`, check từng stream một sẽ có đáp án
 
 #### Flag: CobaltStrikeIsEverywhere
 

